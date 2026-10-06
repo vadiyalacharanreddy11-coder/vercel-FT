@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -21,8 +21,8 @@ const FoodPartnerRegister = () => {
         setErrorMessage("");
 
         try {
-             const res = await axios.post(
-  "http://localhost:8000/api/auth/foodpartner/register",
+             const res = await api.post(
+  "/api/auth/foodpartner/register",
   {
     businessname,
     contactname,

@@ -1,6 +1,6 @@
  
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { FiHome, FiBookmark, FiArrowLeft } from "react-icons/fi";
 
@@ -15,7 +15,7 @@ const SavedReelsPage = () => {
   useEffect(() => {
     const fetchSavedReels = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/food/saved", {
+        const res = await api.get("/api/food/saved", {
           withCredentials: true,
         });
 

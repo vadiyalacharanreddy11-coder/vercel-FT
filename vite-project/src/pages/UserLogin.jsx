@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -15,7 +15,7 @@ const UserLogin = () => {
     let password = e.target.password.value;
     setErrorMessage("");
     try {
-      const res = await axios.post("http://localhost:8000/api/auth/user/login",{
+      const res = await api.post("/api/auth/user/login",{
         emailid,
         password
       },{withCredentials:true})

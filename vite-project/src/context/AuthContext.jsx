@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
   const getSession = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/auth/me", {
+      const response = await api.get("/api/auth/me", {
         withCredentials: true,
       });
 
@@ -45,11 +45,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const currentRole = session.role;
       if (currentRole === "foodpartner") {
-        await axios.get("http://localhost:8000/api/auth/foodpartner/logout", {
+        await api.get("/api/auth/foodpartner/logout", {
           withCredentials: true,
         });
       } else if (currentRole === "user") {
-        await axios.get("http://localhost:8000/api/auth/user/logout", {
+        await api.get("/api/auth/user/logout", {
           withCredentials: true,
         });
       }

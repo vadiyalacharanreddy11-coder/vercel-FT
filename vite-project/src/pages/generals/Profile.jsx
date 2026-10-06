@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../../api'
 import '../../profile.css'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
@@ -18,7 +18,7 @@ const Profile = () => {
 
   const handleDeleteItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/food/${itemId}`, {
+      await api.delete(`/api/food/${itemId}`, {
         withCredentials: true,
       });
 
@@ -34,8 +34,8 @@ const Profile = () => {
         console.log("Fetching profile for ID:", id); // Debug log
         
         // Fetch current logged-in food partner profile
-        const res = await axios.get(
-           `http://localhost:8000/api/foodpartner/profile/${id}`,
+          const res = await api.get(
+            `/api/foodpartner/profile/${id}`,
           { withCredentials: true }
         )
         
@@ -44,8 +44,8 @@ const Profile = () => {
 
         
         // Fetch their videos/food items
-        const videosRes = await axios.get(
-            `http://localhost:8000/api/foodpartner/food-items/${id}`,
+        const videosRes = await api.get(
+          `/api/foodpartner/food-items/${id}`,
           { withCredentials: true }
         )
         console.log("Videos response:", videosRes.data); // Debug log

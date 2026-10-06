@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import api from "../../api";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FiHeart, FiBookmark, FiMessageCircle, FiHome } from "react-icons/fi";
 import { useAuth } from "../../context/AuthContext";
@@ -35,7 +35,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/food/", {
+        const res = await api.get("/api/food/", {
           withCredentials: true,
         });
 
@@ -91,7 +91,7 @@ const HomePage = () => {
       }
 
       try {
-        const res = await axios.get("http://localhost:8000/api/food/saved", {
+        const res = await api.get("/api/food/saved", {
           withCredentials: true,
         });
 
@@ -156,8 +156,8 @@ const HomePage = () => {
     setLikePendingMap((prev) => ({ ...prev, [id]: true }));
 
   try {
-    const resp = await axios.post(
-      "http://localhost:8000/api/food/likes",
+    const resp = await api.post(
+      "/api/food/likes",
       { foodId: id, liked: desiredLiked },
       { withCredentials: true }
     );
@@ -201,8 +201,8 @@ const HomePage = () => {
       )
     );
 
-    const resp = await axios.post(
-      "http://localhost:8000/api/food/saves",
+    const resp = await api.post(
+      "/api/food/saves",
       { foodId: id },
       { withCredentials: true }
     );

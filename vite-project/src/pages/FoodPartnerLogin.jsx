@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -17,8 +17,8 @@ const FoodPartnerLogin = () => {
   setErrorMessage("");
 
   try {
-    const res = await axios.post(
-      "http://localhost:8000/api/auth/foodpartner/login",
+    const res = await api.post(
+      "/api/auth/foodpartner/login",
       {
         emailid,
         password

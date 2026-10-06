@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../api";
 import React, { useState } from "react";
 
 const CreateFoodPage = () => {
@@ -24,8 +24,8 @@ const CreateFoodPage = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/food/",
+      const res = await api.post(
+        "/api/food/",
         formData,
         {
           withCredentials: true,
